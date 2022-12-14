@@ -84,7 +84,7 @@ function crearMensajeHTML(mensaje, personaje, lat, lng, foto) {
 
 
         <div class="avatar">
-            <img src="img/avatars/${ personaje }.png">
+            <img src="img/avatars/${ personaje }.jpg">
         </div>
         <div class="bubble-container">
             <div class="bubble">
@@ -134,14 +134,14 @@ function logIn( ingreso ) {
         salirBtn.removeClass('oculto');
         timeline.removeClass('oculto');
         avatarSel.addClass('oculto');
-        modalAvatar.attr('src', 'img/avatars/' + usuario + '.png');
+        modalAvatar.attr('src', 'img/avatars/' + usuario + '.jpg');
     } else {
         nuevoBtn.addClass('oculto');
         salirBtn.addClass('oculto');
         timeline.addClass('oculto');
         avatarSel.removeClass('oculto');
 
-        titulo.text('Seleccione día de la semana');
+        titulo.text('Seleccione el personaje');
     
     }
 
@@ -300,7 +300,7 @@ function crearMensajeMapa(lat, lng, personaje) {
         data-lat="${ lat }"
         data-lng="${ lng }">
                 <div class="avatar">
-                    <img src="img/avatars/${ personaje }.png">
+                    <img src="img/avatars/${ personaje }.jpg">
                 </div>
                 <div class="bubble-container">
                     <div class="bubble">

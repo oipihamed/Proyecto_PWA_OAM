@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, height=device-height, viewport-fit=cover">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Calendar</title>
+    <title>ShareIt</title>
 
     <link href='https://fonts.googleapis.com/css?family=Quicksand:300,400' rel='stylesheet' type='text/css'>
 	<link href='https://fonts.googleapis.com/css?family=Lato:400,300' rel='stylesheet' type='text/css'>
@@ -17,7 +17,7 @@
     <link rel="manifest" href="manifest.json">
 
     <!-- Android -->
-    <meta name="theme-color" content="#FE7600">
+    <meta name="theme-color" content="#008100">
 
     <!-- IOS -->
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -48,7 +48,7 @@
             <span id="salir-btn" class="fa fa-sign-out-alt out oculto animated fadeIn"></span>
             <span id="titulo">
                 <i class="fa fa-user"></i>
-                Seleccione un día de la semana
+                Seleccione un personaje
             </span>
             <span id="nuevo-btn" class="fa fa-pen-square new oculto animated fadeIn fast"></span>
         </span>
@@ -56,16 +56,16 @@
 
         <!-- Modal -->
         <div id="modal" class="oculto">
-            <img id="modal-avatar" src="img/avatars/L.png">
+            <img id="modal-avatar" src="img/avatars/Jinx.jpg">
 
             <span class="first"> 
-                <span id="titulo-modal">Nueva tarea</span>
+                <span id="titulo-modal">Nuevo comentario</span>
                 <span id="cancel-btn" class="fa fa-times"></span>
             </span>
             
 
             <div class="nuevo-mensaje">
-                <textarea id="txtMensaje" placeholder="Nueva tarea..." rows="5"></textarea>
+                <textarea id="txtMensaje" placeholder="Nuevo comentario..." rows="5"></textarea>
 
                 <!-- CAMARA - 1: Agregar contenedor -->
                 <div class="camara-contenedor fadeIn fast oculto" align="center">
@@ -101,7 +101,7 @@
         <!-- Fin Modal -->
 
 
-        <!-- Seleccion de Día -->
+        <!-- Seleccion de personaje -->
         <div id="seleccion" class="seleccion animated fadeIn fast" align="center">
 
             <!-- NOTIFICACIONES -->
@@ -110,36 +110,28 @@
             <!-- Fin NOTIFICACIONES -->
         <div class="wrapper">
             <div>
-                <img data-user="L" src="img/avatars/L.png" alt="Lunes" class="seleccion-avatar">
+                <img data-user="Jinx" src="img/avatars/Jinx.jpg" alt="Jinx" class="seleccion-avatar">
             </div>
 
             <div>
-                <img data-user="M" src="img/avatars/M.png" alt="Martes" class="seleccion-avatar">
+                <img data-user="Rengar" src="img/avatars/Rengar.jpg" alt="Rengar" class="seleccion-avatar">
             </div>
 
             <div>
-                <img data-user="M" src="img/avatars/M.png" alt="Miercoles" class="seleccion-avatar">
+                <img data-user="Ezreal" src="img/avatars/Ezreal.jpg" alt="Ezreal" class="seleccion-avatar">
             </div>
 
             <div>
-                <img data-user="J" src="img/avatars/J.png" alt="Jueves" class="seleccion-avatar">
+                <img data-user="Temmo" src="img/avatars/Temmo.jpg" alt="Temmo" class="seleccion-avatar">
             </div>
 
             <div>
-                <img data-user="V" src="img/avatars/V.png" alt="Viernes" class="seleccion-avatar">
-            </div>
-
-            <div>
-                <img data-user="S" src="img/avatars/S.png" alt="Sabado" class="seleccion-avatar">
-            </div>
-
-            <div>
-                <img data-user="D" src="img/avatars/D.png" alt="Domingo" class="seleccion-avatar">
+                <img data-user="Yasuo" src="img/avatars/Yasuo.jpg" alt="Yasuo" class="seleccion-avatar">
             </div>
         </div>
         </div>
 
-        <!-- FIN Seleccion de Día -->
+        <!-- FIN Seleccion de Personaje -->
 
         <!-- Lista de Tareas -->
         <ul id="timeline" class="timeline oculto">

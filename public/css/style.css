@@ -9,7 +9,7 @@
     margin: 0px !important;
     color: #7f8c8d;
     font-size: 16px;
-    background-color: #00b6fe; 
+    background-color: #008100; 
     width: 100%;
 
 
@@ -52,7 +52,7 @@
   top: 1000px;
   height: 100%;
   width: 100%;
-  background-color: #1e00fe;
+  background-color: #005A00;
   z-index: 999;
   opacity: 0;
 }
@@ -116,7 +116,7 @@ textarea {
 .fab {
   width: 70px;
   height: 70px;
-  background-color: #3108c7;
+  background-color: #004100;
   border-radius: 50%;
   box-shadow: 0 2px 6px 0 #666;
   transition: all 0.1s ease-in-out;
@@ -152,7 +152,7 @@ textarea {
 .fab-photo {
   width: 50px;
   height: 50px;
-  background-color: #470494;
+  background-color: #004600;
   border-radius: 50%;
   box-shadow: 0 2px 6px 0 #666;
   transition: all 0.1s ease-in-out;
@@ -213,7 +213,7 @@ textarea {
     width: 100%;
     display: block;
     list-style-type: none;
-    background-color: #00b6fe;
+    background-color: #008100;
     padding-bottom: 2em;
     padding-left: 0px;
     margin-bottom: 2em; 
@@ -222,7 +222,7 @@ textarea {
       padding: 1em 0; 
     }
     .timeline li:nth-child(even) {
-      background-color: #71e5ff; 
+      background-color: #02a602; 
     }
   
   .avatar {
@@ -257,8 +257,8 @@ textarea {
     top: 0px;
 
     margin: auto;
-    background-color: #0821c7;
-    text-shadow: #2084c7 1px 1px 0;
+    background-color: #005A00;
+    text-shadow: #019701 1px 1px 0;
     padding: 1em 0 !important;
     color: white;
     text-align: center;
@@ -455,7 +455,7 @@ button {
 }
 
 .btn-noti-activadas {
-  background-color: #3498db;
+  background-color: #4adb34;
 }
 
 .btn-noti-desactivadas {
