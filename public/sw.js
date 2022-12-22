@@ -1,4 +1,3 @@
-
 importScripts("js/pouchdb-7.3.1.min.js");
 importScripts("js/sw-db.js");
 
@@ -13,12 +12,11 @@ const APP_SHELL = [
     "index.html",
     "css/style.css",
     "img/favicon.ico",
-    "img/avatars/L.png",
-    "img/avatars/M.png",
-    "img/avatars/J.png",
-    "img/avatars/V.png",
-    "img/avatars/S.png",
-    "img/avatars/D.png",
+    "img/avatars/Ezreal.jpg",
+    "img/avatars/Jinx.jpg",
+    "img/avatars/Rengar.jpg",
+    "img/avatars/Temmo.jpg",
+    "img/avatars/Yasuo.jpg",
     "js/app.js",
     "js/sw-utils.js",
     "js/sw-db.js",
@@ -89,10 +87,14 @@ self.addEventListener("fetch", (evento) => {
 
 
 self.addEventListener("sync", evento => {
-    //console.log("SW: Sync");
+    console.log("SW: Sync");
 
     if( evento.tag === "nuevo-mensaje"){
         const respuesta = enviarMensajes();
+        evento.waitUntil( respuesta );
+    }
+    if(evento.tag === "nuevo-personaje"){
+       const respuesta = enviarPersonajes();
         evento.waitUntil( respuesta );
     }
 } );
@@ -102,13 +104,13 @@ self.addEventListener("sync", evento => {
 self.addEventListener('push', e => {
 
     const data = JSON.parse( e.data.text() );
-
+console.log(data.usuario);
     const title = data.titulo;
     const options = {
         body: data.cuerpo,       
-        icon: `img/avatars/${ data.usuario }.png`,
+        icon: `img/avatars/${ data.usuario }.jpg`,
         badge: 'img/favicon.ico',
-        image: 'https://as01.epimg.net/meristation/imagenes/2022/09/09/reportajes/1662739276_405887_1662795061_noticia_normal_recorte1.jpg',
+        image: 'https://cdn1.epicgames.com/salesEvent/salesEvent/EGS_LeagueofLegends_RiotGames_S1_2560x1440-ee500721c06da3ec1e5535a88588c77f',
         vibrate: [125,75,125,275,200,275,125,75,125,275,200,600,200,600],
         openUrl: '/',
         data: {            
@@ -119,13 +121,13 @@ self.addEventListener('push', e => {
         actions: [
             {
                 action: 'lunes-action',
-                title: 'Lunes',
-                icon: 'img/avatars/L.png'
+                title: 'Ver',
+                icon: 'img/avatars/Ezreal.jpg'
             },
             {
                 action: 'martes-action',
-                title: 'Martes',
-                icon: 'img/avatars/M.png'
+                title: 'Descartar',
+                icon: 'img/avatars/Yasuo.jpg'
             }
         ]
     };

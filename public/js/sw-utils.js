@@ -29,10 +29,23 @@ function manejarPeticionesApi(nombreCache, req){
         return fetch( req );
 
     }else if(req.clone().method === "POST"){
-
+        if( (req.url.indexOf('/api/personaje') >= 0)){
+            if( self.registration.sync ){
+                return req.clone().text().then(resp => {
+                    console.log(resp);
+                    console.log("dentro de sync")
+    
+                    const obj = JSON.parse( resp );
+                    return guardarPersonaje(obj);
+                });
+            }else{
+                return fetch(req);
+            }
+        }else{
         if( self.registration.sync ){
             return req.clone().text().then(resp => {
                 console.log(resp);
+                console.log("dentro de sync")
 
                 const obj = JSON.parse( resp );
                 return guardarMensaje(obj);
@@ -40,6 +53,7 @@ function manejarPeticionesApi(nombreCache, req){
         }else{
             return fetch(req);
         }
+    }
     }else{
 
         return fetch( req )

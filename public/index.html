@@ -51,6 +51,7 @@
                 Seleccione un personaje
             </span>
             <span id="nuevo-btn" class="fa fa-pen-square new oculto animated fadeIn fast"></span>
+            <span id="nuevoP-btn" class="fa fa fa-plus new animated fadeIn fast"></span>
         </span>
         <!-- Fin Titulo -->
 
@@ -108,7 +109,7 @@
             <button class=" btn-noti-activadas oculto">Desactivar Notificaciones</button>
             <button class=" btn-noti-desactivadas oculto">Activar Notificaciones</button>
             <!-- Fin NOTIFICACIONES -->
-        <div class="wrapper">
+        <div class="wrapper" id="div-n-p">
             <div>
                 <img data-user="Jinx" src="img/avatars/Jinx.jpg" alt="Jinx" class="seleccion-avatar">
             </div>
@@ -117,21 +118,48 @@
                 <img data-user="Rengar" src="img/avatars/Rengar.jpg" alt="Rengar" class="seleccion-avatar">
             </div>
 
-            <div>
-                <img data-user="Ezreal" src="img/avatars/Ezreal.jpg" alt="Ezreal" class="seleccion-avatar">
-            </div>
 
-            <div>
-                <img data-user="Temmo" src="img/avatars/Temmo.jpg" alt="Temmo" class="seleccion-avatar">
-            </div>
-
-            <div>
-                <img data-user="Yasuo" src="img/avatars/Yasuo.jpg" alt="Yasuo" class="seleccion-avatar">
-            </div>
         </div>
         </div>
 
         <!-- FIN Seleccion de Personaje -->
+    <!-- Modal agregar nuevo personaje -->
+    <div id="agregarP" class="oculto" align="center">
+
+        <div class="wrapper">
+            <div>
+                <img data-user="Ezreal" src="img/avatars/Ezreal.jpg" alt="Ezreal" class="seleccionN-avatar">
+            </div>
+
+            <div>
+                <img data-user="Temmo" src="img/avatars/Temmo.jpg" alt="Temmo" class="seleccionN-avatar">
+            </div>
+
+            <div>
+                <img data-user="Yasuo" src="img/avatars/Yasuo.jpg" alt="Yasuo" class="seleccionN-avatar">
+            </div>
+        </div>
+        <span class="first">
+            <span id="titulo-modal">Nuevo Personaje</span>
+            <span id="cancel-btn-p" class="fa fa-times"></span>
+        </span>
+
+
+        <div class="nuevo-mensaje">
+            <textarea id="txtMensajeP" placeholder="Nombre personaje..." rows="5"></textarea>
+
+        </div>
+
+
+        <!-- boton de enviar -->
+
+        <div id="post-btn-p" class="fab">
+            <i class="fa fa-paper-plane"></i>
+        </div>
+
+    </div>
+
+<!--Agregarpersonaje-->
 
         <!-- Lista de Tareas -->
         <ul id="timeline" class="timeline oculto">

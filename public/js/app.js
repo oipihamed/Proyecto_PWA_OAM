@@ -1,6 +1,6 @@
 
 var url = window.location.href;
-var swLocation = '/ejemplo-sincronizacion/sw.js';
+var swLocation = '/sw.js';
 var swReg;
 
 if ( navigator.serviceWorker ) {
@@ -29,16 +29,23 @@ if ( navigator.serviceWorker ) {
 
 var titulo      = $('#titulo');
 var nuevoBtn    = $('#nuevo-btn');
+var nuevoPBtn    = $('#nuevoP-btn');
 var salirBtn    = $('#salir-btn');
 var cancelarBtn = $('#cancel-btn');
+var cancelarPBtn = $('#cancel-btn-p');
 var postBtn     = $('#post-btn');
+var postPBtn     = $('#post-btn-p');
 var avatarSel   = $('#seleccion');
+var agregarP=$('#agregarP');
 var timeline    = $('#timeline');
+var divnp    = $('#div-n-p');
 
 var modal       = $('#modal');
 var modalAvatar = $('#modal-avatar');
 var avatarBtns  = $('.seleccion-avatar');
+var avatarNBtns  = $('.seleccionN-avatar');
 var txtMensaje  = $('#txtMensaje');
+var txtMensajeP  = $('#txtMensajeP');
 
 // El usuario, contiene el ID del hÃ©roe seleccionado
 var usuario;
@@ -125,20 +132,67 @@ function crearMensajeHTML(mensaje, personaje, lat, lng, foto) {
 }
 
 
+function crearPersonajeHTML( personaje) {
+
+
+    var content =`
+    <div>
+    <img data-user="${personaje}" src="img/avatars/${personaje}.jpg" alt="${personaje}" class="seleccion-avatar">
+</div>
+        `;
+        
+    divnp.prepend(content);
+    cancelarPBtn.click();
+    avatarBtns  = $('.seleccion-avatar');
+    // Seleccion de personaje
+avatarBtns.on('click', function() {
+    usuario = $(this).data('user');
+    console.log(usuario);
+
+    titulo.text('@' + usuario);
+
+    logIn(true);
+
+});
+
+
+}
+
+
 
 // Globals
 function logIn( ingreso ) {
 
     if ( ingreso ) {
         nuevoBtn.removeClass('oculto');
+        nuevoPBtn.addClass('oculto');        
         salirBtn.removeClass('oculto');
         timeline.removeClass('oculto');
         avatarSel.addClass('oculto');
         modalAvatar.attr('src', 'img/avatars/' + usuario + '.jpg');
     } else {
         nuevoBtn.addClass('oculto');
+        nuevoPBtn.removeClass('oculto');        
         salirBtn.addClass('oculto');
         timeline.addClass('oculto');
+        avatarSel.removeClass('oculto');
+
+        titulo.text('Seleccione el personaje');
+    
+    }
+
+}
+function nuevoP( ingreso ) {
+
+    if ( ingreso ) {
+        nuevoPBtn.addClass('oculto');
+        avatarSel.addClass('oculto');
+        agregarP.removeClass('oculto');
+        postPBtn.addClass('oculto');  
+    } else {
+        nuevoPBtn.removeClass('oculto');
+        agregarP.addClass('oculto');
+        postPBtn.removeClass('oculto'); 
         avatarSel.removeClass('oculto');
 
         titulo.text('Seleccione el personaje');
@@ -150,12 +204,27 @@ function logIn( ingreso ) {
 
 // Seleccion de personaje
 avatarBtns.on('click', function() {
-
     usuario = $(this).data('user');
+    console.log(usuario);
 
     titulo.text('@' + usuario);
 
     logIn(true);
+
+});
+
+avatarNBtns.on('click', function() {
+
+    usuario = $(this).data('user');
+   postPBtn.removeClass('oculto');   
+
+});
+nuevoPBtn.on('click', function() {
+
+//    usuario = $(this).data('user');
+nuevoP(true);
+//    titulo.text('@' + usuario);
+  //  logIn(true);
 
 });
 
@@ -189,6 +258,12 @@ cancelarBtn.on('click', function() {
          });
     }
 });
+// Boton de cancelar mensaje
+cancelarPBtn.on('click', function() {
+             nuevoP(false);
+     
+});
+
 
 // Boton de enviar mensaje
 postBtn.on('click', function() {
@@ -217,10 +292,54 @@ postBtn.on('click', function() {
     .then( resp => resp.json() )
     .then( resp => console.log("funciona:", resp))
     .catch( error => console.log("Falla: ", error) );
+    
+    const notificationOpts = {
+        body: data.mensaje,
+        icon: `img/avatars/${data.user}.jpg`
+    };
+
+    enviarNotificacionMensaje(data.user,notificationOpts);
 
     crearMensajeHTML( mensaje, usuario, lat, lng, foto );
 
 });
+
+// Boton de enviar pesonaje
+postPBtn.on('click', function() {
+    var mensaje = txtMensajeP.val();
+    if ( mensaje.length === 0 ) {
+        cancelarPBtn.click();
+        cancelarBtn.click();
+        return;
+    }
+
+    var data  = {
+        user: usuario,
+        mensaje :mensaje,
+    }
+
+    fetch("/api/personaje", {
+        method : "POST",
+        headers : {
+            "Content-Type" : "application/json"
+        },
+        body : JSON.stringify( data )
+    })
+    .then( resp => resp.json() )
+    .then( resp => console.log("funciona:", resp))
+    .catch( error => console.log("Falla: ", error) );
+    
+    const notificationOpts = {
+        body: "Persoje nuevo: "+data.mensaje,
+        icon: `img/avatars/${data.user}.jpg`
+    };
+
+    enviarNotificacionMensaje(data.user,notificationOpts);
+    
+    crearPersonajeHTML( data.user );
+
+});
+
 
 function listarMensajes() {
 
@@ -234,6 +353,20 @@ function listarMensajes() {
         });
 
 }
+
+function listarPersonajes() {
+
+    fetch("/api/personaje")
+        .then(resp => resp.json() )
+        .then(datos => {
+            console.log( datos );
+            datos.forEach(personaje => {
+                crearPersonajeHTML(  personaje.user);
+            });
+        });
+
+}
+listarPersonajes();
 
 listarMensajes();
 
@@ -396,7 +529,16 @@ function enviarNotificacion() {
     };
 
 }
+function enviarNotificacionMensaje(usuario,notificationOpts) {
+  
+    const n = new Notification('Mensaje de '+usuario, notificationOpts);
 
+    // Por si se requiere realizar una acción cuando se de clic sobre la notificación
+    n.onclick = () => {
+        console.log('Le diste clic a la notificacion');
+    };
+
+}
 function verificaSuscripcion( activadas ) {
 
     // Verificar el estatus para ver que boton se tiene que activar

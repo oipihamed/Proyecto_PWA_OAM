@@ -5,23 +5,30 @@ const push = require('./push');
 const mensajes = [
     {
         _id : "1",
-        user: "L",
-        mensaje : "Terminar recuperacion uno"
+        user: "Jinx",
+        mensaje : "HAHAHAHA"
     },
     {
         _id : "2",
-        user: "M",
-        mensaje : "Terminar entregable"
+        user: "Temmo",
+        mensaje : "OH NOOO"
     },
     {
         _id : "3",
-        user: "J",
-        mensaje : "Reunion de Legal Orders"
+        user: "Yasuo",
+        mensaje : "YEAAAAAAHHH"
     }
 ];
+const personajes = [
+
+];
+
 
 router.get( "/" , (req, resp) =>{
     resp.json( mensajes );
+});
+router.get( "/personaje" , (req, resp) =>{
+    resp.json( personajes );
 });
 
 router.post( "/" , (req, resp) =>{
@@ -36,13 +43,31 @@ router.post( "/" , (req, resp) =>{
 
     mensajes.push( mensaje );
 
-    console.log("Mis mensajes:" , mensajes);
+    console.log("Mis comentarios:" , mensajes);
 
     resp.json( {
         ok : true,
         mensaje
     } );
 });
+
+router.post( "/personaje" , (req, resp) =>{
+
+    const pesonaje = {
+        mensaje : req.body.mensaje,
+        user : req.body.user,
+    }
+
+    personajes.push( pesonaje );
+
+    console.log("Mis pesonajes:" , pesonaje);
+
+    resp.json( {
+        ok : true,
+        pesonaje
+    } );
+});
+
 
 //NOTIFICACIONES PUSH
 

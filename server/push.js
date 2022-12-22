@@ -8,7 +8,7 @@ let suscripciones = require('./subs-db.json');
 
 
 webpush.setVapidDetails(
-    'mailto:sergiovazquez@utng.edu.mx',
+    'mailto:1219100380@alumnos.utng.edu.mx',
     vapid.publicKey,
     vapid.privateKey
   );
